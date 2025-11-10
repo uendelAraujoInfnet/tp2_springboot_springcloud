@@ -1,0 +1,4 @@
+CREATE DATABASE labdb;
+CREATE USER 'labuser'@'%' IDENTIFIED BY 'labpassword';
+GRANT ALL PRIVILEGES ON labdb.* TO 'labuser'@'%';
+FLUSH PRIVILEGES;
