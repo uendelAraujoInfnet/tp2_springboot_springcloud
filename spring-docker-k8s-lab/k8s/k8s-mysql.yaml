@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-lab-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-lab
+  template:
+    metadata:
+      labels:
+        app: mysql-lab
+    spec:
+      containers:
+        - name: mysql-lab
+          image: uendel/mysql-lab:1.0   # imagem que você publicou
+          ports:
+            - containerPort: 3306
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-lab-service
+spec:
+  selector:
+    app: mysql-lab
+  ports:
+    - port: 3306
+      targetPort: 3306
+  type: ClusterIP
+
